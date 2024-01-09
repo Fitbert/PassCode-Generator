@@ -39,13 +39,15 @@ function generatePassword() {
   } else {
     text4 = "You canceled!";
   }
-  
+  var uppercaseABC = confirm("Your password should have an uppercase letter!");
   console.log("hey you clicked the button")
   
 //input should be validated and at least one character type should be selected
-//if (keyLenght <8 || keyLength > 128) { text}
+if (keyLength <8 || keyLength > 128) { 
+  return("Your password does not meet length requirement")
+}
 
-if (text2 && text3 && text4 === !true){
+if (text === text2 && text3 && text4 === false){
   return(" Your password does not meet requirements.")
 }
 
