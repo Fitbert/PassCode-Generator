@@ -12,7 +12,7 @@ This was a great project that streatched my skills. While trying to make a basic
 ## Usage
 
 This will be used to make passwords. 
-Working Gif ( 02-Challenge\Assets\PassCode-Generator\images\Password Generator.gif)
+Working Gif ( https://github.com/Fitbert/PassCode-Generator/blob/main/images/Password%20Generator.gif)
 
 ## Credits
 
