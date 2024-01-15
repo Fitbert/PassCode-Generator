@@ -1,68 +1,33 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+ var generateBtn = document.querySelector("#generate");
 
 // make sure button works
 function getPassword() {
 
   //prompt user to password lenght least 8 characters and no more than 128 characters
   let keyLength = prompt("Please pick a lenght of password from 8 to 128 charaters.");
+       if (keyLength < 8 || keyLength > 128) {
+       writePassword("Your password does not meet length requirement")
+  }
+  
 
   var uppercase = confirm("Your password should have an uppercase letter!")
-  //if (userInput != '' && userInput != null) {
-  // return("Does not meet requirements.") 
-  // }
+      if (uppercase != true ) {
+      writePassword("Does not meet requirements.") 
+   }
   var lowercase = confirm("Your password should have a lowercase letter!")
   var Symbols = confirm("Your password should have a symbol!")
-  var numbers = confirm("Your password should have a number!")
-
-  //confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-  // let text = "Would you like to include Lowercase letters?";
-  // if (confirm(text) == true) {
-  //   text = "You pressed OK!";
-  // } else {
-  //   text = "You canceled!";
-  // }
-  //let answer = prompt("Would you like to include Uppercase letters?");
-
-  // let text2 = "Would you like to include Uppercase letters?";
-  // if (confirm(text2) == true) {
-  //   text2 = "You pressed OK!";
-  // } else {
-  //   text2 = "You canceled!";
-  // }
-  // //let person = prompt("Would you like to include numeric items?");
-
-  // let text3 = "Would you like to include numeric items?";
-  // if (confirm(text3) == true) {
-  //   text3 = "You pressed OK!";
-  // } else {
-  //   text3 = "You canceled!";
-  // }
-
-  //let person = prompt("Would you like to include special characters?");
-  // let text4 = "Would you like to include special characters?";
-  // if (confirm(text4) == true) {
-  //   text4 = "You pressed OK!";
-  // } else {
-  //   text4 = "You canceled!";
-  // }
-  // var uppercaseABC = confirm("Your password should have an uppercase letter!");
-  // console.log("hey you clicked the button")
-
+  var numberss = confirm("Your password should have a number!")
+  
   //input should be validated and at least one character type should be selected
-  if (keyLength < 8 || keyLength > 128) {
-    writePassword("Your password does not meet length requirement")
+  if (uppercase.lenth !== true){
+    alert ("You must have one uppercase letter in your password.")
+    
   }
-
-  // if (text === text2 && text3 && text4 === false){
-  //   return(" Your password does not meet requirements.")
-  //}
-
-  //return("your password here")
-
+    
+  
   //available chars to pull from code idea from Traverst Media Youtube
   function getRandomLower() {
-    console.log()
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
   }
 
@@ -79,28 +44,36 @@ function getPassword() {
     return Symbols[Math.floor(Math.random() * Symbols.length)];
   }
 
+  // const numbers = [1,2,3,4,5,6,7,8,9,0]
+  // const symbols =["!","@","#"]
+  // const characterCodes = Array.from(Array(26).map( ( _, i) => i + 97));
+  // const lowercaseLetters = characterCodes.map(code => String.fromCharCode(code));
+  // const uppercaseLetters = lowercaseLetters.map(letter=> letter.toUpperCase())
+
+
+
   //List of defined variables
-  var uppercaseABC = getRandomUpper;
-  var lowercaseABC = getRandomLower;
-  var specialSymbols = getRandomSymbol;
+  var uppercaseABC = getRandomUpper();
+  var lowercaseABC = getRandomLower();
+  var specialSymbols = getRandomSymbol();
   var numeric = getRandomNumber();
   var multiSelect = [];
   var randomKey = ""
 
-  //call for critieria material
+//   //call for critieria material
   if (lowercaseABC) { multiSelect += lowercaseABC; }
   if (uppercaseABC) { multiSelect += uppercaseABC; }
   if (numeric) { multiSelect += numeric; }
   if (specialSymbols) { multiSelect += specialSymbols; }
-  console.log(multiSelect)
+  
   for (i = 0; i < keyLength; i++) {
     randomKey += multiSelect[Math.floor(Math.random() * multiSelect.length)]
   }
-  console.log(randomKey)
+  console.log(randomKey);
   return (randomKey);
 
 }
-console.log("you got to here!")
+console.log("you got to here")
 
 // Write password to the #password input
 var passwordText = document.querySelector("#password");
@@ -111,5 +84,5 @@ function writePassword(randomKey) {
   passwordText.value = randomKey;
 }
 
-// Add event listener to generate button. This is a Call To Action (CTA button)
-generateBtn.addEventListener("click", function () { writePassword(getPassword()) });
+ // Add event listener to generate button. This is a Call To Action (CTA button)
+ generateBtn.addEventListener("click", function () { writePassword (getPassword()) });
