@@ -1,88 +1,57 @@
 // Assignment Code
- var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate");
 
-// make sure button works
-function getPassword() {
-
-  //prompt user to password lenght least 8 characters and no more than 128 characters
-  let keyLength = prompt("Please pick a lenght of password from 8 to 128 charaters.");
-       if (keyLength < 8 || keyLength > 128) {
-       writePassword("Your password does not meet length requirement")
-  }
-  
-
-  var uppercase = confirm("Your password should have an uppercase letter!")
-      if (uppercase != true ) {
-      writePassword("Does not meet requirements.") 
-   }
-  var lowercase = confirm("Your password should have a lowercase letter!")
-  var Symbols = confirm("Your password should have a symbol!")
-  var numberss = confirm("Your password should have a number!")
-  
-  //input should be validated and at least one character type should be selected
-  if (uppercase.lenth !== true){
-    alert ("You must have one uppercase letter in your password.")
+// A function to get the password
+    function getPassword() {
     
-  }
+// Password variables for allowable passwords characters
+    var uppercaseABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    var lowercaseABC = "abcdefghijklmnopqrstuvwxyz"
+    var numeric = "0123456789"
+    var symbols = "!@#$%^&*()-=+<>?/|':[]{}"
+    var multiSelect = "";
+    var randomKey = "";
+
+//Initial prompt to allow end-user to select a password length between 8 to 128 characters long.
+    var keyLength = prompt(
+        "Your password must be between 8 to 128 characters long, enter your desired number."
+    );
     
-  
-  //available chars to pull from code idea from Traverst Media Youtube
-  function getRandomLower() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-  }
+// Return to window if the selected number is out of range for password criteria
+    if (keyLength < 8 || keyLength > 128 || isNaN(keyLength)) {
+        alert("Your password does not meet the critia. Password must be between 8 and 128 characters in length. Enter another number.");        
+        return;
 
-  function getRandomUpper() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-  }
+// Variable Prompts. Once the end user successfully enters a valid numberor value, this prompt will notify them that their password will contain the following characters when the random key is finally generated
+    } else {
+    var upperAlpha = confirm("Your password will contain a variety of uppercase letters, click ok to continue");
+    var lowerAlpha = confirm("Your password will contain a variety of lowercase letters, click ok to continue");
+    var numericOptions = confirm("Your password will contain numbers, click ok to continue");
+    var specialSymbols = confirm("Your password will contain a variety of symbols, click ok to continue");
+    }
 
-  function getRandomNumber() {
-    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-  }
+    if (upperAlpha) {multiSelect += uppercaseABC;}
+    if (lowerAlpha) {multiSelect += lowercaseABC;}
+    if (numericOptions) {multiSelect += numeric;}
+    if (specialSymbols) {multiSelect += symbols;}
 
-  function getRandomSymbol() {
-    const Symbols = "!@#$%^&*()?<|=+:;,[]"
-    return Symbols[Math.floor(Math.random() * Symbols.length)];
-  }
+// For loop to repeat if criteria is not met and will end once password is generated. 
+    for (i = 0; i < keyLength; i++) {
 
-  // const numbers = [1,2,3,4,5,6,7,8,9,0]
-  // const symbols =["!","@","#"]
-  // const characterCodes = Array.from(Array(26).map( ( _, i) => i + 97));
-  // const lowercaseLetters = characterCodes.map(code => String.fromCharCode(code));
-  // const uppercaseLetters = lowercaseLetters.map(letter=> letter.toUpperCase())
-
-
-
-  //List of defined variables
-  var uppercaseABC = getRandomUpper();
-  var lowercaseABC = getRandomLower();
-  var specialSymbols = getRandomSymbol();
-  var numeric = getRandomNumber();
-  var multiSelect = [];
-  var randomKey = ""
-
-//   //call for critieria material
-  if (lowercaseABC) { multiSelect += lowercaseABC; }
-  if (uppercaseABC) { multiSelect += uppercaseABC; }
-  if (numeric) { multiSelect += numeric; }
-  if (specialSymbols) { multiSelect += specialSymbols; }
-  
-  for (i = 0; i < keyLength; i++) {
-    randomKey += multiSelect[Math.floor(Math.random() * multiSelect.length)]
-  }
-  console.log(randomKey);
-  return (randomKey);
-
-}
-console.log("you got to here")
-
-// Write password to the #password input
-var passwordText = document.querySelector("#password");
-function writePassword(randomKey) {
-  if (password.length === 0) {
-    return;
-  }
-  passwordText.value = randomKey;
+// Final random password has generated
+        randomKey += multiSelect[Math.floor(Math.random() * multiSelect.length)]
+    }
+    return(randomKey);
 }
 
- // Add event listener to generate button. This is a Call To Action (CTA button)
- generateBtn.addEventListener("click", function () { writePassword (getPassword()) });
+// Write password to the #password input. The text box area where the newly generated password will appear.
+    var passwordText = document.querySelector("#password");
+    function writePassword(randomKey) {
+    if (password.length === 0) {
+        return;
+    }
+    passwordText.value = randomKey;
+}
+
+// Add event listener to generate button. This is a Call To Action (CTA button)
+    generateBtn.addEventListener("click", function () { writePassword(getPassword()) });
