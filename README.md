@@ -1,9 +1,9 @@
 # PassCode-Generator
- creating a passcode generation
+ creating a passcode generator
 
 
 
-## Second Challenge Week 3
+## Challenge Week 3
 
 We are creating a basic a passcode generation that will make a password to a legnth defined by the user that will include upper and lowercase letters, numbers and symbols. 
 
